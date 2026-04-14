@@ -76,9 +76,10 @@
 
 /* ─── SVG container ──────────────────────────────────────────────────────── */
 .svgContainer {
-  /* The EBI SVG is ~106 wide × 195 tall (ratio ≈ 1:1.84) */
-  width:  clamp(120px, 16vw, 200px);
-  height: clamp(221px, 29.5vw, 368px);
+  /* EBI SVG aspect ratio: 106 × 195 (width:height ≈ 0.544)
+     Size off viewport HEIGHT so bodies fill the screen regardless of width */
+  height: clamp(200px, 56vh, 680px);
+  width:  clamp(109px, 30.5vh, 370px);
   overflow: visible;
 }
 

@@ -56,6 +56,23 @@ export default function TravelSurvivalAnim() {
   const [loaded,    setLoaded]    = useState(false);
   const [step,      setStep]      = useState(0);   // 0 | 1 | 2  (for text only)
   const [scrollPct, setScrollPct] = useState(0);
+  const [winSize,   setWinSize]   = useState({ w: window.innerWidth, h: window.innerHeight });
+
+  // ── Re-init chart on window resize (debounced) ──────────────────────────
+  useEffect(() => {
+    let timer;
+    const onResize = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        setWinSize({ w: window.innerWidth, h: window.innerHeight });
+        setLoaded(false);
+        currentZone.current = 0;
+        setStep(0);
+      }, 250);
+    };
+    window.addEventListener("resize", onResize);
+    return () => { window.removeEventListener("resize", onResize); clearTimeout(timer); };
+  }, []);
 
   // ── Build SVG once data arrives ─────────────────────────────────────────
   useEffect(() => {
@@ -66,7 +83,7 @@ export default function TravelSurvivalAnim() {
     const el      = svgRef.current;
     const W       = el.clientWidth || 680;
     const margin  = { top: 48, right: 24, bottom: 70, left: 58 };
-    const H       = 360;
+    const H       = Math.min(Math.max(340, winSize.h * 0.62), 700);
     const w       = W - margin.left - margin.right;
     const h       = H - margin.top  - margin.bottom;
 
@@ -209,7 +226,7 @@ export default function TravelSurvivalAnim() {
     return () => {
       d3.select(el.parentElement).selectAll(".ts-tooltip").remove();
     };
-  }, [data]);
+  }, [data, winSize]);
 
   // ── Zone-triggered D3 transitions ─────────────────────────────────────────
   const fireTransition = useCallback((toZone) => {
@@ -317,7 +334,7 @@ export default function TravelSurvivalAnim() {
 
         {/* Left story panel */}
         <div style={{
-          width:     "clamp(220px, 30%, 340px)",
+          width:     "clamp(240px, 28%, 520px)",
           flexShrink: 0,
           padding:   "0 3vw 0 5vw",
           position:  "relative",

@@ -137,6 +137,7 @@ export default function TemporalFlowMap() {
   const [m2Phase,         setM2Phase]        = useState(1);
   const [scrollPct,       setScrollPct]      = useState(0);
   const [todayCounts,     setTodayCounts]    = useState({});
+  const [winKey,          setWinKey]         = useState(0); // bumped on resize to re-init
 
   const compositeModeRef   = useRef("normal");
   const activeMilestoneRef = useRef(null);
@@ -148,6 +149,22 @@ export default function TemporalFlowMap() {
   useEffect(() => { compositeModeRef.current   = compositeMode;   }, [compositeMode]);
   useEffect(() => { activeMilestoneRef.current = activeMilestone; }, [activeMilestone]);
   useEffect(() => { m2PhaseRef.current         = m2Phase;         }, [m2Phase]);
+
+  // ── Re-initialise on window resize (debounced 300 ms) ──────────────────
+  useEffect(() => {
+    let timer;
+    const onResize = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        setLoaded(false);
+        animRef.current.drawnUpTo = -1;
+        animRef.current.pendingDay = animRef.current.startDay;
+        setWinKey(k => k + 1);
+      }, 300);
+    };
+    window.addEventListener("resize", onResize);
+    return () => { window.removeEventListener("resize", onResize); clearTimeout(timer); };
+  }, []);
 
   // ── Canvas sizing helper ─────────────────────────────────────────────────
   const sizeCanvas = useCallback((c) => {
@@ -271,7 +288,7 @@ export default function TemporalFlowMap() {
     }
     load();
     return () => { cancelled = true; };
-  }, [sizeCanvas]);
+  }, [sizeCanvas, winKey]);
 
   // ── Composite (supports cross-fade between modes) ─────────────────────────
   const composite = useCallback((mode, dimmed = false) => {

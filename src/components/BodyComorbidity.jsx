@@ -249,7 +249,8 @@ export default function BodyComorbidity() {
 
   if (loading) return <div style={{ height: `${SCROLL_VH * 100}vh` }} />;
 
-  const MAX_OFFSET = 240;
+  // Scale the split gap with viewport width so bodies don't overlap or fly off-screen
+  const MAX_OFFSET = Math.max(200, window.innerWidth * 0.20);
   const offset     = splitT * MAX_OFFSET;
   const rightOpacity  = clamp(splitT * 5, 0, 1);
   const labelOpacity  = clamp((scrollPct - LABEL_SHOW) / 0.12, 0, 1);
@@ -278,14 +279,14 @@ export default function BodyComorbidity() {
         {/* Bodies */}
         <div className={styles.bodiesWrap}>
 
-          {/* Distance labels above bodies */}
+          {/* Distance labels above bodies — centered then shifted by same offset as bodies */}
           <div className={styles.distLabel}
-            style={{ opacity: labelOpacity, left: "calc(50% - 200px)", transform: `translateX(${-offset}px)` }}>
+            style={{ opacity: labelOpacity, left: "50%", transform: `translateX(calc(-50% + ${-offset}px))` }}>
             <span className={styles.distLabelTitle}>Close-Distance</span>
             <span className={styles.distLabelSub}>≤ 5 mi · n={counts.close.toLocaleString()}</span>
           </div>
           <div className={styles.distLabel}
-            style={{ opacity: labelOpacity * rightOpacity, left: "calc(50% + 40px)", transform: `translateX(${offset}px)` }}>
+            style={{ opacity: labelOpacity * rightOpacity, left: "50%", transform: `translateX(calc(-50% + ${offset}px))` }}>
             <span className={styles.distLabelTitle}>Far-Distance</span>
             <span className={styles.distLabelSub}>≥ 15 mi · n={counts.far.toLocaleString()}</span>
           </div>
