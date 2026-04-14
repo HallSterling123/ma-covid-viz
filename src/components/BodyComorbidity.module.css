@@ -1,0 +1,324 @@
+/* ─── Sticky wrapper ─────────────────────────────────────────────────────── */
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0d1117;
+}
+
+.bgGrad {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 50%, rgba(22,35,55,0.7) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 30% at 20% 75%, rgba(188,140,255,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 25% 30% at 80% 75%, rgba(248,129,102,0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Intro block ────────────────────────────────────────────────────────── */
+.introBlock {
+  position: absolute;
+  top: 5vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0 2rem;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+}
+
+.introTitle {
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0 0 0.45rem;
+  letter-spacing: -0.02em;
+}
+
+.introLead {
+  font-size: clamp(0.82rem, 1.2vw, 1rem);
+  color: #64748b;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ─── Bodies wrap ────────────────────────────────────────────────────────── */
+.bodiesWrap {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 78vh;
+  z-index: 1;
+}
+
+/* ─── Individual body slot ───────────────────────────────────────────────── */
+.bodySlot {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  will-change: transform;
+  top: 5vh;
+}
+
+/* ─── SVG container ──────────────────────────────────────────────────────── */
+.svgContainer {
+  /* The EBI SVG is ~106 wide × 195 tall (ratio ≈ 1:1.84) */
+  width:  clamp(120px, 16vw, 200px);
+  height: clamp(221px, 29.5vw, 368px);
+  overflow: visible;
+}
+
+.svgContainer svg {
+  width:  100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ─── Distance labels above bodies ──────────────────────────────────────── */
+.distLabel {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  will-change: transform;
+  z-index: 3;
+}
+
+.distLabelTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  letter-spacing: 0.04em;
+}
+
+.distLabelSub {
+  font-size: 0.68rem;
+  color: #475569;
+  font-family: monospace;
+}
+
+/* ─── vs divider ─────────────────────────────────────────────────────────── */
+.vsDivider {
+  position: absolute;
+  color: #334155;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+/* ─── Organ legends (below each body when split) ─────────────────────────── */
+.organLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 150px;
+  transition: opacity 0.4s ease;
+}
+
+.orgRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.67rem;
+  color: #64748b;
+}
+
+.orgDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.orgName {
+  flex: 1;
+  color: #8b9baf;
+  white-space: nowrap;
+}
+
+.orgPct {
+  font-family: monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.orgDelta {
+  font-family: monospace;
+  font-size: 0.6rem;
+  font-weight: 600;
+  min-width: 30px;
+  text-align: right;
+}
+
+.heatNote {
+  font-size: 0.58rem;
+  color: #475569;
+  line-height: 1.4;
+  margin-top: 0.35rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ─── Combined legend ─────────────────────────────────────────────────────── */
+.combinedLegend {
+  position: absolute;
+  bottom: 4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.4rem;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legendSwatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendName {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.legendPct {
+  font-size: 0.7rem;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+/* ─── Difference panel — vertical rectangle, centered between bodies ────── */
+.diffPanel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -48%);
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 4;
+  padding: 0.85rem 0.9rem;
+  background: rgba(9,13,20,0.88);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.diffPanelTitle {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #475569;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* unused in new layout but kept for safety */
+.diffBadgeRow {
+  display: contents;
+}
+
+.diffBadge {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 0.45rem 0.55rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 7px;
+}
+
+.diffLabel {
+  font-size: 0.67rem;
+  font-weight: 600;
+}
+
+.diffValue {
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: monospace;
+  line-height: 1.1;
+}
+
+.diffDesc {
+  font-size: 0.58rem;
+  color: #475569;
+}
+
+.diffPanelNote {
+  font-size: 0.62rem;
+  color: #475569;
+  line-height: 1.55;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ─── Patient count badge ─────────────────────────────────────────────────── */
+.countBadge {
+  position: absolute;
+  top: 1.4rem;
+  right: 2rem;
+  font-size: 0.65rem;
+  color: #475569;
+  font-family: monospace;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ─── Scroll cue ─────────────────────────────────────────────────────────── */
+.scrollCue {
+  position: absolute;
+  bottom: 3vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  color: #475569;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
+}

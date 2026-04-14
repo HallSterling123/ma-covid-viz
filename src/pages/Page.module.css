@@ -1,0 +1,56 @@
+.page {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pageTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.pageDesc {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  max-width: 640px;
+  margin-top: -0.5rem;
+}
+
+.insightRow {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.insightCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.8rem 1.1rem;
+  flex: 1;
+  min-width: 140px;
+}
+
+.insightValue {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--covid);
+}
+
+.insightLabel {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 650px) {
+  .twoCol { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "bin": "0 \u2013 2 mi",
+    "public_survived": 286,
+    "public_died": 108,
+    "private_survived": 1154,
+    "private_died": 171,
+    "no_insurance_survived": 262,
+    "no_insurance_died": 26,
+    "total": 2007,
+    "survived": 1702,
+    "survival_rate": 84.8
+  },
+  {
+    "bin": "2 \u2013 4 mi",
+    "public_survived": 581,
+    "public_died": 299,
+    "private_survived": 2261,
+    "private_died": 365,
+    "no_insurance_survived": 545,
+    "no_insurance_died": 73,
+    "total": 4124,
+    "survived": 3387,
+    "survival_rate": 82.13
+  },
+  {
+    "bin": "4 \u2013 7 mi",
+    "public_survived": 449,
+    "public_died": 215,
+    "private_survived": 1848,
+    "private_died": 333,
+    "no_insurance_survived": 417,
+    "no_insurance_died": 67,
+    "total": 3329,
+    "survived": 2714,
+    "survival_rate": 81.53
+  },
+  {
+    "bin": "7 \u2013 10 mi",
+    "public_survived": 182,
+    "public_died": 111,
+    "private_survived": 852,
+    "private_died": 163,
+    "no_insurance_survived": 170,
+    "no_insurance_died": 40,
+    "total": 1518,
+    "survived": 1204,
+    "survival_rate": 79.31
+  },
+  {
+    "bin": "10 \u2013 15 mi",
+    "public_survived": 99,
+    "public_died": 93,
+    "private_survived": 440,
+    "private_died": 102,
+    "no_insurance_survived": 117,
+    "no_insurance_died": 20,
+    "total": 871,
+    "survived": 656,
+    "survival_rate": 75.32
+  },
+  {
+    "bin": "15+ mi",
+    "public_survived": 73,
+    "public_died": 67,
+    "private_survived": 187,
+    "private_died": 82,
+    "no_insurance_survived": 55,
+    "no_insurance_died": 17,
+    "total": 481,
+    "survived": 315,
+    "survival_rate": 65.49
+  }
+]
