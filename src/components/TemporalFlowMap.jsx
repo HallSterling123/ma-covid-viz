@@ -166,8 +166,8 @@ export default function TemporalFlowMap() {
       try {
         const [us, raw, fx] = await Promise.all([
           fetch("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json").then(r=>r.json()),
-          fetch("/data/ambulatory_temporal.json").then(r=>r.json()),
-          fetch("/data/milestone_effects.json").then(r=>r.json()),
+          fetch(`${import.meta.env.BASE_URL}data/ambulatory_temporal.json`).then(r=>r.json()),
+          fetch(`${import.meta.env.BASE_URL}data/milestone_effects.json`).then(r=>r.json()),
         ]);
         if (cancelled) return;
 

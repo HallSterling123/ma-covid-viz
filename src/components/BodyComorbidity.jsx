@@ -180,7 +180,7 @@ export default function BodyComorbidity() {
 
   /* ── Fetch SVG text once ─────────────────────────────────────────────── */
   useEffect(() => {
-    fetch("/data/homo_sapiens_male.svg")
+    fetch(`${import.meta.env.BASE_URL}data/homo_sapiens_male.svg`)
       .then(r => r.text())
       .then(text => { svgText.current = text; });
   }, []);

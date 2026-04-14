@@ -67,7 +67,7 @@ export default function IndividualFlowMap() {
       try {
         const [us, flows] = await Promise.all([
           fetch("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json").then(r => r.json()),
-          fetch("/data/individual_flows.json").then(r => r.json()),
+          fetch(`${import.meta.env.BASE_URL}data/individual_flows.json`).then(r => r.json()),
         ]);
         if (cancelled) return;
         dataRef.current = { us, flows };

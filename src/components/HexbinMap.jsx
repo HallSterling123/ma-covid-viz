@@ -17,7 +17,7 @@ export default function HexbinMap() {
       try {
         const [us, raw] = await Promise.all([
           fetch("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json").then(r => r.json()),
-          fetch("/data/covid_locations.json").then(r => r.json()),
+          fetch(`${import.meta.env.BASE_URL}data/covid_locations.json`).then(r => r.json()),
         ]);
         if (cancelled) return;
 

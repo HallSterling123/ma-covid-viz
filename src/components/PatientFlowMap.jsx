@@ -40,8 +40,8 @@ export default function PatientFlowMap() {
         try {
           const [us, flow, orgs] = await Promise.all([
             fetch("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json").then(r => r.json()),
-            fetch("/data/patient_flow.json").then(r => r.json()),
-            fetch("/data/top_orgs.json").then(r => r.json()),
+            fetch(`${import.meta.env.BASE_URL}data/patient_flow.json`).then(r => r.json()),
+            fetch(`${import.meta.env.BASE_URL}data/top_orgs.json`).then(r => r.json()),
           ]);
           if (cancelled) return;
           dataRef.current = { us, flow, orgs };
